@@ -9,5 +9,5 @@
     tar -xvzf *.tar.gz
     conda create --name py36 python=3.6 numpy scipy matplotlib pandas anaconda
     conda create --name py27 python=2.7 numpy scipy matplotlib pandas anaconda
-    iconv -c -f GB2312 -t UTF-8 test_query.csv > test_query.csv.new
-    
+    iconv -c -f GB2312 -t UTF-8 test_query.csv > test_query.csv.new
+    ls -alh
