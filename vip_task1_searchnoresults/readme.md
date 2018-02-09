@@ -15,8 +15,9 @@
 # 以下是具体步骤
 1. 根据之前准备的excel表，把d00情况的(query, tb_cat) 放到一个文件中
 
-    cut -f 1,2 d00.concise | sed 's/     /,/' > d00.concise.q_tb
-
+```
+cut -f 1,2 d00.concise | sed 's/     /,/' > d00.concise.q_tb
+```
 
 
 
