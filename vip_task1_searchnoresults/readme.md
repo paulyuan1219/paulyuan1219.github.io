@@ -15,11 +15,39 @@
 # 以下是具体步骤
 1. 根据之前准备的excel表，把d00情况的(query, tb_cat) 放到一个文件中
 
+`cut -f 1,2 d00.concise | sed 's/     /,/' > d00.concise.q_tb`
+
+2. 可以利用SequenceMatcher，直接在之前的excel上做rerank，看看能不能得到想要的结果
+
 ```
-cut -f 1,2 d00.concise | sed 's/     /,/' > d00.concise.q_tb
+from difflib import SequenceMatcher
+
+def similar(a, b):
+    return SequenceMatcher(None, a, b).ratio()
+
+>>> similar("Apple","Appel")
+0.8
+>>> similar("Apple","Mango")
+0.0
 ```
 
+2. 利用现有的(tbcat, vipcatlist)信息来做，但是在影射过程中要注意，初始的ranking只是参考。要把LM加进去
 
+女小童儿童棉服  女装/女士精品>>棉衣/棉服        女装>>女上装>>女式外套:703      女装>>女上装>>女式棉衣:644      女装>>女上装>>女式羽绒服:192    女装>>女上装>>女式夹克:47       女装>>女上装>>女式马夹:27
+
+similar("女小童儿童棉服","女装>>女上装>>女式外套")
+similar("女小童儿童棉服","女装>>女上装>>女式棉衣")
+similar("女小童儿童棉服","女装>>女上装>>女式羽绒服")
+similar("女小童儿童棉服","女装>>女上装>>女式夹克")
+similar("女小童儿童棉服","女装>>女上装>>女式马夹")
+
+
+
+similar("童鞋/婴儿鞋/亲子鞋>>凉鞋","童鞋>>婴幼儿鞋>>学步鞋")
+similar("童鞋/婴儿鞋/亲子鞋>>凉鞋","童鞋>>女童鞋>>女童凉鞋/鱼嘴鞋/洞洞鞋")
+similar("童鞋/婴儿鞋/亲子鞋>>凉鞋","")
+similar("童鞋/婴儿鞋/亲子鞋>>凉鞋","")
+similar("童鞋/婴儿鞋/亲子鞋>>凉鞋","")
 
 
 1 袁娜新给了一个vip类目表。使用之前，首先要看一下这个表和之前她给的是否一样。(等等，这样做太慢了，先看一下LM如何应用，效果如何)
