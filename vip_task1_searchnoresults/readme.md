@@ -13,6 +13,16 @@
 - 之前7227的数据做training，这次1522数据做testing，目标准确率>=90%
 
 # 以下是具体步骤
+1. 先简单粗暴一把，用一下库，对于之前的程序稍微改一下，reranking时候用SequenceMatcher即可，然后看这1522个里面有哪些是对的，哪些是错的
+879: -1, i.e. my top1 vipcat doesn't occur in human labels
+70:-2, i.e. there's no vip recommendation for these qeuries
+573: 1, i.e for my top1 vipcat occur in human labels.
+
+Now look at the 879 file
+
+
+
+
 1. 根据之前准备的excel表，把d00情况的(query, tb_cat) 放到一个文件中
 
 `cut -f 1,2 d00.concise | sed 's/     /,/' > d00.concise.q_tb`
@@ -30,6 +40,14 @@ def similar(a, b):
 >>> similar("Apple","Mango")
 0.0
 ```
+
+Use the tool: preparedatasetforying.v7.py get query_tbcat.csv.new.debug.output_1_1.tmpnew
+Then use the tool autoeval.v2.py to get auto eval
+     879 a.-1
+      70 a.-2
+     573 a.1
+    1522 total
+
 
 2. 利用现有的(tbcat, vipcatlist)信息来做，但是在影射过程中要注意，初始的ranking只是参考。要把LM加进去
 
