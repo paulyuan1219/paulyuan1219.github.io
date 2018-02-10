@@ -15,3 +15,11 @@
     conda create --name py27 python=2.7 numpy scipy matplotlib pandas anaconda
     iconv -c -f GB2312 -t UTF-8 test_query.csv > test_query.csv.new
     ls -alh
+
+# Python
+
+```
+l1 = [('dave', 'B', 10), ('jane', 'B', 12), ('john', 'A', 15)]
+sorted(l1, key=lambda x:x[2], reverse=True)
+```
+
