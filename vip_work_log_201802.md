@@ -39,6 +39,18 @@ iconv -c -f gb2312 -t utf-8 12.5搜索识别唯品主分类_淘宝卖家宝贝�
 ## 20180213
 今天继续，把上面的表补充完整
 
+1. 首先分析一下scheme1.concise-人工验证12.27-袁伟复查.xlsx 
+这里用的vipcattree就是最原始的版本，对2134个query，对top5 的vipcat做了标注，
+从这里，我们可以推导出一个(query, vipcat, label)的三元组列表，这个可以作为我们的baseline。利用excel本身的sort by color的功能，可以生成这个三元组。注意，把黄色cell放在top
+
+
+
+## 20180214
+对于表格，直接在markdown里面太慢，先在excel里面做好，再放进来吧，快一些。
+
+
+
+
 注意，以后所有的人工验证标注都是在一些query上来的，需要把这些query整理一些，并且放入raw目录下。
 
 在redo/eval1目录下放置我的第一次结果和袁娜的第一次feedback
@@ -48,6 +60,7 @@ iconv -c -f gb2312 -t utf-8 12.5搜索识别唯品主分类_淘宝卖家宝贝�
 | query_tbcat.csv | 7227 | test.query.7227.utf8.withtaobaolist.csv去掉表头就是这个文件 |
 | scheme1.concise | 9737 | 20171222 mailed to yuanna <br/> 用shheme1生成的(tbcat, vipcat) mapping |
 | query_tbcat.csv.scheme1_1 | 6091 | 20171222 mailed to yuanna <br/> 对每一个Query，选择top1的taobao_cat，然后去scheme1.concise里面找相对应的vip_cat，这样，可以为6091个query找到vip_cat |
+| scheme1.concise-人工验证12.27.xlsx | 2134 | 20171227 received <br /> 总共6091个query中，处理了2134个，正确706，不正确1428。详细见内 <br /> 如果只看top1的话，大约 1400 正确，准确率大约三分之二 |
 
 
 
