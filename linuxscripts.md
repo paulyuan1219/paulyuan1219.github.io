@@ -3,8 +3,10 @@
     sort -t , -k14,14 -k15,15 -k8,8 540.nohead.csv > 540.nohead.sort.csv
     sort vip_cattree.20171211.csv.col12 | uniq -c > vip_cattree.20171211.csv.col12.uniq
     cut -d, -f 14,15 540.nohead.sort.csv > a
-    sed 's/,/       /g' 70.nohead.sortbycol89.col789.csv > 70.nohead.sortbycol89.col789.tab.csv    
-    sed -n 1,22p d > d00 # extract l1 to l22
+    cut -f 2- -d'        ' buchong.txt > buchong.txt.concise # 打印从第二列开始，delimit为tab
+    paste all.txt.clean.nf1.51 buchong.txt.concise > buchong.txt.concise.complete # the paste delimit is TAB
+    sed 's/,/       /g' 70.nohead.sortbycol89.col789.csv > 70.nohead.sortbycol89.col789.tab.csv    从
+    sed -n 1,22p d > d00 # extract l1 to l22
     egrep '^-1,' query_tbcat.csv.new.output_1.tmpnew.autoeval > a2
     egrep '停用' vip_cattree.20171211.csv | wc -l # 计算包含该模式的行数
     
