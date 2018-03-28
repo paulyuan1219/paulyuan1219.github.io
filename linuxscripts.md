@@ -20,6 +20,10 @@
     iconv -c -f GB2312 -t UTF-8 test_query.csv > test_query.csv.new
     iconv -c -f gb2312 -t utf-8 cat1_fabuleimu.csv > cat1_fabuleimu.csv.utf8 # the input is a result from web crawler
     ls -alh
+    
+# AWK
+
+    awk -F'\t' '{print $1}' testset2.sort.query.uniq.taobao20180202 > c
 
 # Python
 
